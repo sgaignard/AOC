@@ -1,5 +1,6 @@
 file = File.readlines("input.txt").map(&:chomp)
 
+#  PART 1 ----------------
 stacks = [%w(S L W),
           %w(J T N Q),
           %w(S C H F J),
@@ -10,17 +11,16 @@ stacks = [%w(S L W),
           %w(B Z T F H N D J),
           %w(H L Q N B F T)]
 
-          #  PART 1 ----------------
 
-          file.each do |input|
-            num, stack, dest = input.gsub!(/\D/," ").split.map(&:to_i)
+file.each do |input|
+  num, stack, dest = input.gsub!(/\D/," ").split.map(&:to_i)
   stack -= 1
   dest -= 1
+
   num.times do
     item = stacks[stack].pop
     stacks[dest] << item
   end
-
 end
 
 puts stacks.map {|stack| stack.last}.join
